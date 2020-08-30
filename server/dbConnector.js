@@ -1,10 +1,13 @@
-import mongoose from "mongoose";
-import config from "../server/config";
+import mongoose from 'mongoose';
+import config from './config';
 
 const options = {
   useNewUrlParser: true,
-  user: config.MONGO.USERNAME,
-  pass: config.MONGO.PASSWORD,
+  auth: {
+    user: config.MONGO.USERNAME,
+    password: config.MONGO.PASSWORD,
+  },
+  authSource: 'admin',
   useUnifiedTopology: true,
   useCreateIndex: true,
   useCreateIndex: true,
@@ -16,8 +19,10 @@ const options = {
   family: 4, // Use IPv4, skip trying IPv6
 };
 
-mongoose.connect(`mongodb://${config.MONGO.HOST}`, options, (error) => {
+mongoose.connect(`mongodb://${config.MONGO.HOST}/${config.MONGO.DATABASE}`, options, (error) => {
   if (error) {
     throw error;
+  } else {
+    console.log(`connected to database : ${config.MONGO.HOST}`);
   }
 });
