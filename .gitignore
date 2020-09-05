@@ -1,7 +1,4 @@
 /node_modules
 package-lock.json
-<<<<<<< HEAD
 /Database/data
-=======
->>>>>>> ac1b6d7d8541ad4ccbd078b8bf0ecf478f52ae08
 yarn.lock
