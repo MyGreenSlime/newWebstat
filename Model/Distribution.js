@@ -1,14 +1,14 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const DistributionSchema = new Schema({
-  name: String,
-  parameters: [
-    {
-      name: String,
-      meaning: String,
-    },
-  ],
+	name: String,
+	parameters: [
+		{
+			name: String,
+			meaning: String,
+		},
+	],
 });
 
-export default mongoose.model('Distributions', DistributionSchema);
+export default mongoose.model("Distributions", DistributionSchema);

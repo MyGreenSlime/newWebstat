@@ -1,26 +1,28 @@
 {
-  "name": "webstat-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon index.js --exec babel-node --presets babel-preset-env",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.10.0",
-    "nodemon": "^2.0.4",
-    "passport": "^0.4.1",
-    "passport-oauth": "^1.0.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.1.0",
-    "babel-preset-env": "^1.7.0"
-  }
+	"name": "webstat-backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./Dockerfile,./docker-compose.yml,./yarn.lock --copy-files",
+		"dev": "nodemon index.js --exec babel-node --presets babel-preset-env",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.10.0",
+		"nodemon": "^2.0.4",
+		"passport": "^0.4.1",
+		"passport-oauth": "^1.0.0"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.3",
+		"babel-loader": "^8.1.0",
+		"babel-preset-env": "^1.7.0",
+		"rimraf": "^3.0.2"
+	}
 }
