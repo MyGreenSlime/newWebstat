@@ -9,4 +9,14 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./data/db:/data/db
+      - ./production/data/db:/data/db
+  mongo-dev:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: webstat
+    ports:
+      - 27018:27017
+    volumes:
+      - ./development/data/db:/data/db
