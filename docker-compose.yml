@@ -3,6 +3,30 @@ services:
   user_api:
     build: .
     restart: always
+    depends_on:
+      - mongo-prod
+      - mongo-dev
     ports:
-      - 80:3000
-    network_mode: "host"
+      - 3001:3000
+    environment:
+      - MONGO_HOST=mongo-prod
+  mongo-prod:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: webstat
+    ports:
+      - 27017:27017
+    volumes:
+      - ./Database/production/data/db:/data/db
+  mongo-dev:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: webstat
+    ports:
+      - 27018:27017
+    volumes:
+      - ./Database/development/data/db:/data/db

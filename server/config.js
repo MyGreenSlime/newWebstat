@@ -2,7 +2,8 @@ const Config = {
 	MONGO: {
 		USERNAME: process.env.MONGO_USERNAME || "root",
 		PASSWORD: process.env.MONGO_PASSWORD || "webstat",
-		HOST: process.env.MONGO_HOST || "localhost:27017",
+		HOST: process.env.MONGO_HOST || "localhost",
+		PORT: process.env.MONGO_PORT || "27017",
 		DATABASE: process.MONGO_DATABASE || "webstat",
 	},
 	SERVER: {

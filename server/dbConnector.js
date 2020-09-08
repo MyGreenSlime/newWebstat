@@ -20,7 +20,7 @@ const options = {
 };
 
 mongoose.connect(
-	`mongodb://${config.MONGO.HOST}/${config.MONGO.DATABASE}`,
+	`mongodb://${config.MONGO.HOST}:${config.MONGO.PORT}/${config.MONGO.DATABASE}`,
 	options,
 	(error) => {
 		if (error) {
