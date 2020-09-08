@@ -11,7 +11,7 @@ passport.use(
 			authorizationURL: config.OAUTH.AUTHORIZATION_ENDPOINT,
 			clientID: config.OAUTH.CLIENT_ID,
 			clientSecret: config.OAUTH.CLIENT_SECRET,
-			callbackURL: "/auth/callback",
+			callbackURL: config.OAUTH.REDIRECT_URL,
 		},
 		function (accessToken, refreshToken, profile, cb) {
 			console.log(accessToken, refreshToken, profile, cb);
