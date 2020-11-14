@@ -2,22 +2,26 @@ import { app } from "../server";
 import passport from "passport";
 import { OAuth2Strategy } from "passport-oauth";
 import config from "../config";
+import { User } from "../../Model/";
 
 passport.use(
-	"provider",
 	new OAuth2Strategy(
 		{
-			tokenURL: config.OAUTH.TOKEN_ENDPOINT,
 			authorizationURL: config.OAUTH.AUTHORIZATION_ENDPOINT,
+			tokenURL: config.OAUTH.TOKEN_ENDPOINT,
 			clientID: config.OAUTH.CLIENT_ID,
 			clientSecret: config.OAUTH.CLIENT_SECRET,
 			callbackURL: config.OAUTH.REDIRECT_URL,
 		},
-		function (accessToken, refreshToken, profile, cb) {
+		async function (accessToken, refreshToken, profile, cb) {
 			console.log(accessToken, refreshToken, profile, cb);
 			cb();
-			// User.findOrCreate(..., function(err, user) {
-			//   done(err, user);
+			// try{
+			// 	const user = User.findOne({name : profile.});
+			// }
+
+			// User.findOrCreate({ exampleId: profile.id }, function (err, user) {
+			// 	return cb(err, user);
 			// });
 		}
 	)
@@ -26,11 +30,11 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/auth/", passport.authenticate("provider"));
+app.get("/auth/", passport.authenticate("oauth2"));
 
 app.get(
 	"/",
-	passport.authenticate("provider", { failureRedirect: "/login" }),
+	passport.authenticate("oauth2", { failureRedirect: "/login" }),
 	(req, res) => {
 		res.send(req.query);
 	}
