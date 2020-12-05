@@ -13,7 +13,7 @@ passport.use(
 			clientSecret: config.OAUTH.CLIENT_SECRET,
 			callbackURL: config.OAUTH.REDIRECT_URL,
 		},
-		async function (accessToken, refreshToken, profile, cb) {
+		async function (accessToken, refreshToken, profile, done) {
 			console.log(accessToken, refreshToken, profile, done);
 			done();
 		}
@@ -24,11 +24,3 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/auth/", passport.authenticate("oauth2"));
-
-app.get(
-	"/auth/callback",
-	passport.authenticate("oauth2", { failureRedirect: "/loginfailure" }),
-	(req, res) => {
-		res.send(req.query);
-	}
-);
