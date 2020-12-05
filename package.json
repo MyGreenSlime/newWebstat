@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "nodemon --exec babel-node index.js",
 		"build": "babel server -d dist/server | babel Model -d dist/Model | babel index.js -d dist",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"deploy" : "sudo docker-compose build | sudo docker-compose up -d"
 	},
 	"author": "",
 	"license": "ISC",
