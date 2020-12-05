@@ -14,15 +14,8 @@ passport.use(
 			callbackURL: config.OAUTH.REDIRECT_URL,
 		},
 		async function (accessToken, refreshToken, profile, cb) {
-			console.log(accessToken, refreshToken, profile, cb);
-			cb();
-			// try{
-			// 	const user = User.findOne({name : profile.});
-			// }
-
-			// User.findOrCreate({ exampleId: profile.id }, function (err, user) {
-			// 	return cb(err, user);
-			// });
+			console.log(accessToken, refreshToken, profile, done);
+			done();
 		}
 	)
 );
@@ -33,8 +26,8 @@ app.use(passport.session());
 app.get("/auth/", passport.authenticate("oauth2"));
 
 app.get(
-	"/",
-	passport.authenticate("oauth2", { failureRedirect: "/login" }),
+	"/auth/callback",
+	passport.authenticate("oauth2", { failureRedirect: "/loginfailure" }),
 	(req, res) => {
 		res.send(req.query);
 	}
